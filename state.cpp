@@ -2,19 +2,10 @@
 #include <iostream>
 #include <string>
 
+#include "statemachine.h"
+
 using std::cout;
 using std::string;
-
-class IState
-{
-	public:
-		IState(){};
-		~IState(){};
-		virtual void update(float dt)=0;
-		virtual void render()=0;
-		virtual void on_exit()=0;
-		virtual void on_enter()=0;
-};
 
 class WorldState: public IState
 {
@@ -35,20 +26,6 @@ class MenuState : public IState
 		virtual void render();
 		virtual void on_exit();
 		virtual void on_enter();
-};
-
-class StateMachine
-{
-	private:
-		std::map<string, IState*> states;	
-		IState *current_state;
-
-	public:
-		void update(float dt);
-		void render();
-		void change(string name);
-		void set(string name);
-		void add(string name, IState *state);
 };
 
 void StateMachine::update(float dt)
