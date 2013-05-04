@@ -8,6 +8,29 @@ using std::string;
 class IState
 {
 	public:
+		IState(){};
+		~IState(){};
+		virtual void update(float dt)=0;
+		virtual void render()=0;
+		virtual void on_exit()=0;
+		virtual void on_enter()=0;
+};
+
+class WorldState: public IState
+{
+	public:
+		WorldState(){};
+		~WorldState(){};
+		virtual void update(float dt);
+		virtual void render();
+		virtual void on_exit();
+		virtual void on_enter();
+};
+class MenuState : public IState
+{
+	public:
+		MenuState(){};
+		~MenuState(){};
 		virtual void update(float dt);
 		virtual void render();
 		virtual void on_exit();
