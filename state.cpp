@@ -68,8 +68,66 @@ void StateMachine::change(string name)
 	current_state->on_enter();
 }
 
+void StateMachine::set(string name)
+{
+	current_state = states[name];
+	current_state->on_enter();
+}
 void StateMachine::add(string name, IState *state)
 {
 	states.insert(std::pair<string, IState*>(name, state));
 }
 
+void WorldState::update(float dt)
+{
+	cout << dt;
+}
+
+void WorldState::render()
+{
+	cout << "WorldState\n";
+}
+
+void WorldState::on_enter()
+{
+	cout << "World enter\n";
+}
+
+void WorldState::on_exit()
+{
+	cout << "World exit\n";
+}
+void MenuState::update(float dt)
+{
+	cout << dt;
+}
+
+void MenuState::render()
+{
+	cout << "MenuState\n";
+}
+
+void MenuState::on_enter()
+{
+	cout << "Menu enter\n";
+}
+
+void MenuState::on_exit()
+{
+	cout << "Menu exit\n";
+}
+
+int main(int argc, char *argv[])
+{
+	MenuState *menu = new MenuState();
+	WorldState *menu2 = new WorldState();
+	StateMachine *state = new StateMachine();
+
+	state->add("menu", menu);
+	state->add("menu2", menu2);
+	state->set("menu");
+	state->change("menu2");
+	state->render();
+
+	return 0;
+}
