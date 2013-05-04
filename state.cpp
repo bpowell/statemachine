@@ -47,6 +47,7 @@ class StateMachine
 		void update(float dt);
 		void render();
 		void change(string name);
+		void set(string name);
 		void add(string name, IState *state);
 };
 
