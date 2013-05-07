@@ -22,7 +22,7 @@ void StateMachine::set(string name)
 	current_state = states[name];
 	current_state->on_enter();
 }
-void StateMachine::add(string name, IState *state)
+void StateMachine::add(string name, IStatePtr state)
 {
-	states.insert(std::pair<string, IState*>(name, state));
+	states.insert(std::pair<string, IStatePtr>(name, state));
 }

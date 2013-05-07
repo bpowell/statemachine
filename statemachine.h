@@ -4,6 +4,7 @@
 #include <map>
 #include <iostream>
 #include <string>
+#include <boost/shared_ptr.hpp>
 
 using std::string;
 
@@ -18,18 +19,19 @@ class IState
 		virtual void on_enter()=0;
 };
 
+typedef boost::shared_ptr<IState> IStatePtr;
+
 class StateMachine
 {
 	private:
-		std::map<string, IState*> states;	
-		IState *current_state;
+		std::map<string, IStatePtr> states;	
+		IStatePtr current_state;
 
 	public:
 		void update(float dt);
 		void render();
 		void change(string name);
 		void set(string name);
-		void add(string name, IState *state);
+		void add(string name, IStatePtr state);
 };
-
 #endif

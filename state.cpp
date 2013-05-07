@@ -69,8 +69,8 @@ void MenuState::on_exit()
 
 int main(int argc, char *argv[])
 {
-	MenuState *menu = new MenuState();
-	WorldState *menu2 = new WorldState();
+	IStatePtr menu(new MenuState());
+	IStatePtr menu2(new WorldState());
 	StateMachine *state = new StateMachine();
 
 	state->add("menu", menu);
